@@ -12,7 +12,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseCreateAlbum() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot("", ""));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.clickCreateAlbum();
@@ -26,7 +26,7 @@ public class FotoTest extends TestBase {
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
-        fotoMainPage.uploadFoto("\\Users\\grigory.skobelev\\Documents\\work\\photoshop\\dogMoon.jpg");
+        fotoMainPage.uploadFoto("/Users/grigory.skobelev/Documents/work/photoshop/dogMoon.jpg");
     }
 
     @Test

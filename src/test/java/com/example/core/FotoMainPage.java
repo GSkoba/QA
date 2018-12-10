@@ -41,8 +41,7 @@ public class FotoMainPage extends HelperBase {
     }
 
     public void uploadFoto(String path){
-        click(UPLOAD_FOTO);
-        typeKeys(path, By.name("photo"));
+        typeKeys(path, By.xpath(".//*[contains(@class,'html5-upload-link __before-upload')]"));
     }
 
     public void clickEditButton(){
