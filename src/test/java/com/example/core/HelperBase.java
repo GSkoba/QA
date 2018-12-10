@@ -15,9 +15,9 @@ public abstract class HelperBase {
 
     protected abstract void check();
 
-    protected void type(String groupName, By locator) {
+    protected void type(String text, By locator) {
         driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(groupName);
+        driver.findElement(locator).sendKeys(text);
     }
 
     protected void typeKeys(Keys keys, By by) {

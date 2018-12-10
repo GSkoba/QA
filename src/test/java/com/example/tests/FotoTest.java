@@ -7,29 +7,27 @@ import com.example.core.UserMainPageHelper;
 import com.example.model.TestBot;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
-
-import java.util.concurrent.TimeUnit;
-
 
 public class FotoTest extends TestBase {
+    private static final byte[] login = new byte[]{56, 57, 54, 53, 48, 54, 55, 49, 56, 50, 50};
+    private static final byte[] password = new byte[]{82, 108, 111, 108, 113, 55, 49, 106};
 
     @Test
     public void testCaseCreateAlbum() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot(new String(login), new String(password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.clickCreateAlbum();
         String albumName = "Grisha";
         fotoMainPage.inputDiscForAlbum(albumName);
-        fotoMainPage.implicitWaitInSeconds(6);
+        fotoMainPage.implicitWaitInSeconds(8);
         fotoMainPage.clickSaveAlbumButton();
         Assert.assertEquals(albumName,fotoMainPage.getAlbumName());
     }
 
     @Test
     public void testCaseUploadPhotoToAlbum() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot(new String(login), new String(password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum();
@@ -40,7 +38,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseEditAlbum() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot(new String(login), new String(password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum();
@@ -54,7 +52,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseDeleteAlbum() throws Exception{
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot(new String(login), new String(password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum();
@@ -64,7 +62,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseAddCoolToPhoto() throws Exception{
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot(new String(login), new String(password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.clickToPhotoStream();
