@@ -12,8 +12,11 @@ public class FotoMainPage extends HelperBase {
     private static final By EDIT_ALBUM = By.xpath(".//*[contains(@class,'portlet_controls')]//*[contains(@class,'button-pro __sec __small')]");
     private static final By NAME_ALBUM = By.xpath(".//*[contains(@class,'text-field h-mod photo-album-name __mod-counter __active')]");
     private static final By SAVE_ALBUM_CHANGE = By.xpath(".//*[contains(@data-l,'t,submit')]");
-
-
+    private static final By DELETE_BUTTON = By.xpath(".//*[contains(@data-l,'t,.r')]");
+    private static final By DELETE_CONFIRM_BUTTON = By.xpath(".//*[contains(@id,'hook_FormButton_button_delete_confirm')]");
+    private static final By PHOTO_FROM_PHOTOSTREAM = By.xpath(".//*[@class='photo-stream']//*[contains(@class,'ugrid __s')]//*[@class='ugrid_i'][1]");
+    private static final By COOL_BUTTON = By.xpath(".//*[contains(@class,'photo-layer_bottom_block __actions')]//*[contains(@class,'wide-count')]");
+    private static final By COOL_COUNT = By.xpath(".//*[contains(@class,'photo-layer_bottom_block __actions')]//*[contains(@class,'wide-count')]//*[contains(@class,'widget_count')][1]");
 
     public FotoMainPage(WebDriver driver) {
         super(driver);
@@ -54,6 +57,23 @@ public class FotoMainPage extends HelperBase {
 
     public void saveChange(){
         click(SAVE_ALBUM_CHANGE);
+    }
+
+    public void clickDeleteAlbum(){
+        click(DELETE_BUTTON);
+        click(DELETE_CONFIRM_BUTTON);
+    }
+
+    public void clickToPhotoStream(){
+        click(PHOTO_FROM_PHOTOSTREAM);
+    }
+
+    public void clickCoolButton(){
+        click(COOL_BUTTON);
+    }
+
+    public String getCoolCount(){
+        return driver.findElement(COOL_COUNT).getText();
     }
 
     public void addDiscForFoto(){}

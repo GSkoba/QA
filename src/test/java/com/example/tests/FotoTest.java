@@ -5,6 +5,7 @@ import com.example.core.LoginMainPage;
 import com.example.core.TestBase;
 import com.example.core.UserMainPageHelper;
 import com.example.model.TestBot;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -38,6 +39,27 @@ public class FotoTest extends TestBase {
         fotoMainPage.clickEditButton();
         fotoMainPage.changeAlbumName("Grisha2");
         fotoMainPage.saveChange();
+    }
+
+    @Test
+    public void testCaseDeleteAlbum() throws Exception{
+        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new UserMainPageHelper(driver).clickFotoOnToolBar();
+        FotoMainPage fotoMainPage = new FotoMainPage(driver);
+        fotoMainPage.chooseAlbum("Grisha");
+        fotoMainPage.clickEditButton();
+        fotoMainPage.clickDeleteAlbum();
+    }
+
+    @Test
+    public void testCaseAddCommentToPhoto() throws Exception{
+        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new UserMainPageHelper(driver).clickFotoOnToolBar();
+        FotoMainPage fotoMainPage = new FotoMainPage(driver);
+        fotoMainPage.clickToPhotoStream();
+        fotoMainPage.clickCoolButton();
+
+        Assert.assertNotEquals("0",fotoMainPage.getCoolCount());
     }
 
 }
