@@ -18,6 +18,14 @@ public abstract class HelperBase {
         driver.findElement(locator).sendKeys(groupName);
     }
 
+    protected void typeKeys(Keys keys, By by) {
+        driver.findElement(by).sendKeys(keys);
+    }
+
+    protected void typeKeys(String keys, By by){
+        driver.findElement(by).sendKeys(keys);
+    }
+
     protected void click(By locator) {
         driver.findElement(locator).click();
     }
