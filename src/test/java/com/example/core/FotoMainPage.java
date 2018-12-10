@@ -1,7 +1,9 @@
 package com.example.core;
 
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 public class FotoMainPage extends HelperBase {
     private static final By CREATE_NEW_ALBUM = By.xpath(".//*[contains(@data-l,'t,create-photo-album')]");
@@ -40,8 +42,13 @@ public class FotoMainPage extends HelperBase {
         click(ALBUM_OVERLAY);
     }
 
-    public void uploadFoto(String path){
-        typeKeys(path, By.xpath(".//*[contains(@class,'html5-upload-link __before-upload')]"));
+    public void uploadPhoto(String path) {
+        //typeKeys(path, By.xpath(".//*[contains(@class,'html5-upload-link __before-upload')]"));
+        driver.findElement(By.xpath(".//input[@name='photo']")).sendKeys(path);
+    }
+
+    public String getTextOfUploadedPhotosTip() {
+        return driver.findElement(By.className("photo-album_title __counter")).getText();
     }
 
     public void clickEditButton(){
@@ -49,8 +56,11 @@ public class FotoMainPage extends HelperBase {
     }
 
     public void changeAlbumName(String name){
-        typeKeys(name, NAME_ALBUM);
+        //typeText(name, NAME_ALBUM);
+        typeText(name, By.className("text-field h-mod photo-album-name __mod-counter __active"));
     }
+
+
 
     public void saveChange(){
         click(SAVE_ALBUM_CHANGE);
