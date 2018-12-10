@@ -12,7 +12,7 @@ public class FotoMainPage extends HelperBase {
     private static final By ALBUM_OVERLAY = By.xpath(".//*[contains(@class,'photo-album-card_title ellip') and contains(@title,'"+ "Grisha" +"')]");
     private static final By UPLOAD_FOTO = By.xpath(".//*[contains(@class,'html5-link_w js-fileapi-wrapper')]//*[contains(@class,'button-pro __small')]");
     private static final By EDIT_ALBUM = By.xpath(".//*[contains(@class,'portlet_controls')]//*[contains(@class,'button-pro __sec __small')]");
-    private static final By NAME_ALBUM = By.xpath(".//*[contains(@class,'text-field h-mod photo-album-name __mod-counter __active')]");
+    private static final By ALBUM_NAME = By.name("albumSettings.name");
     private static final By SAVE_ALBUM_CHANGE = By.xpath(".//*[contains(@data-l,'t,submit')]");
 
 
@@ -23,6 +23,14 @@ public class FotoMainPage extends HelperBase {
 
     @Override
     protected void check() {
+        /* (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driverWeb) {
+                return isElementPresent(CREATE_NEW_GROUP);
+            }
+        });
+
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(CREATE_NEW_GROUP));
+    */
     }
 
 
@@ -34,7 +42,7 @@ public class FotoMainPage extends HelperBase {
         type(disc, ALBUM_FIELD);
     }
 
-    public void clickSaveAlbumButten() {
+    public void clickSaveAlbumButton() {
         click(SAVE_ALBUM);
     }
 
@@ -48,7 +56,7 @@ public class FotoMainPage extends HelperBase {
     }
 
     public String getTextOfUploadedPhotosTip() {
-        return driver.findElement(By.className("photo-album_title __counter")).getText();
+        return driver.findElement(By.xpath(".//*[@class='photo-album_title __counter']")).getText();
     }
 
     public void clickEditButton(){
@@ -56,8 +64,11 @@ public class FotoMainPage extends HelperBase {
     }
 
     public void changeAlbumName(String name){
-        //typeText(name, NAME_ALBUM);
-        typeText(name, By.className("text-field h-mod photo-album-name __mod-counter __active"));
+        typeText(name, ALBUM_NAME);
+    }
+
+    public String getAlbumName(){
+        return driver.findElement(By.xpath(".//*[@class='photo-album_details ellip']//*")).getText();
     }
 
 

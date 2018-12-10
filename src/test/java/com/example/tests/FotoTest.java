@@ -16,12 +16,14 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseCreateAlbum() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("", ""));
+        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.clickCreateAlbum();
-        fotoMainPage.inputDiscForAlbum("spring");
-        fotoMainPage.clickSaveAlbumButten();
+        String albumName = "spring";
+        fotoMainPage.inputDiscForAlbum(albumName);
+        fotoMainPage.clickSaveAlbumButton();
+        Assert.assertEquals(albumName,fotoMainPage.getAlbumName());
     }
 
     @Test
@@ -31,24 +33,25 @@ public class FotoTest extends TestBase {
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
         //fotoMainPage.uploadFoto("/Users/grigory.skobelev/Documents/work/photoshop/dogMoon.jpg");
-        fotoMainPage.uploadPhoto("/Users/a.perelygina/Desktop/Polytech map.png");
+        fotoMainPage.uploadPhoto("/Users/a.perelygina/Desktop/DialogFormTests.png");
         //Ожидание
         //Thread.sleep(2000);
         fotoMainPage.implicitWaitInSeconds(3);
 
-        Assert.assertEquals("Загружено", fotoMainPage.getTextOfUploadedPhotosTip());
+        Assert.assertEquals("Загружено1", fotoMainPage.getTextOfUploadedPhotosTip());
     }
 
     @Test
-    public void testCaseEditAlbum() throws Exception{
+    public void testCaseEditAlbum() throws Exception {
         new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
         fotoMainPage.clickEditButton();
-        Thread.sleep(3000);
-        fotoMainPage.changeAlbumName("Grisha2");
+        String newName = "Grisha2";
+        fotoMainPage.changeAlbumName(newName);
         fotoMainPage.saveChange();
+        fotoMainPage.implicitWaitInSeconds(2);
+        Assert.assertEquals(newName, fotoMainPage.getAlbumName());
     }
-
 }
