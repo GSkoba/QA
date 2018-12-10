@@ -7,10 +7,12 @@ public class FotoMainPage extends HelperBase {
     private static final By CREATE_NEW_ALBUM = By.xpath(".//*[contains(@data-l,'t,create-photo-album')]");
     private static final By ALBUM_FIELD = By.xpath(".//*[contains(@name,'st.layer.photoAlbumName')]");
     private static final By SAVE_ALBUM = By.xpath(".//*[contains(@name,'button_album_create')]");
-    private static final By ALBUM_OVERLAY = By.xpath(".//*[contains(@class,'photo-album-card_title ellip') and contains(@title,'"+ "Grisha" +"')]");
-    private static final By UPLOAD_FOTO = By.xpath(".//*[contains(@class,'html5-link_w js-fileapi-wrapper')]//*[contains(@class,'button-pro __small')]");
+    private static final By ALBUM_NAME_EDIT = By.xpath(".//*[@class='photo-album_details ellip']//*");
+    private static final By ALBUM_TITLE = By.xpath(".//*[@class='photo-album_title __counter']");
+    private static final By ALBUM_OVERLAY = By.xpath(".//*[contains(@class,'photo-album-card_title ellip') and contains(@title,'" + "Grisha" + "')]");
+    private static final By UPLOAD_FOTO = By.xpath(".//input[@name='photo']");
     private static final By EDIT_ALBUM = By.xpath(".//*[contains(@class,'portlet_controls')]//*[contains(@class,'button-pro __sec __small')]");
-    private static final By NAME_ALBUM = By.xpath(".//*[contains(@class,'text-field h-mod photo-album-name __mod-counter __active')]");
+    private static final By ALBUM_NAME = By.name("albumSettings.name");
     private static final By SAVE_ALBUM_CHANGE = By.xpath(".//*[contains(@data-l,'t,submit')]");
     private static final By DELETE_BUTTON = By.xpath(".//*[contains(@data-l,'t,.r')]");
     private static final By DELETE_CONFIRM_BUTTON = By.xpath(".//*[contains(@id,'hook_FormButton_button_delete_confirm')]");
@@ -26,7 +28,6 @@ public class FotoMainPage extends HelperBase {
     protected void check() {
     }
 
-
     public void clickCreateAlbum() {
         click(CREATE_NEW_ALBUM);
     }
@@ -35,46 +36,52 @@ public class FotoMainPage extends HelperBase {
         type(disc, ALBUM_FIELD);
     }
 
-    public void clickSaveAlbumButten() {
+    public void clickSaveAlbumButton() {
         click(SAVE_ALBUM);
     }
 
-    public void chooseAlbum(String albumName){
+    public void chooseAlbum() {
         click(ALBUM_OVERLAY);
     }
 
-    public void uploadFoto(String path){
-        typeKeys(path, By.xpath(".//*[contains(@class,'html5-upload-link __before-upload')]"));
+    public void uploadPhoto(String path) {
+        typeKeys(path, UPLOAD_FOTO);
     }
 
-    public void clickEditButton(){
+    public String getTextOfUploadedPhotosTip() {
+        return driver.findElement(ALBUM_TITLE).getText();
+    }
+
+    public void clickEditButton() {
         click(EDIT_ALBUM);
     }
 
-    public void changeAlbumName(String name){
-        typeKeys(name, NAME_ALBUM);
+    public void changeAlbumName(String name) {
+        typeText(name, ALBUM_NAME);
     }
 
-    public void saveChange(){
+    public String getAlbumName() {
+        return driver.findElement(ALBUM_NAME_EDIT).getText();
+    }
+
+    public void saveChange() {
         click(SAVE_ALBUM_CHANGE);
     }
 
-    public void clickDeleteAlbum(){
+    public void clickDeleteAlbum() {
         click(DELETE_BUTTON);
         click(DELETE_CONFIRM_BUTTON);
     }
 
-    public void clickToPhotoStream(){
+    public void clickToPhotoStream() {
         click(PHOTO_FROM_PHOTOSTREAM);
     }
 
-    public void clickCoolButton(){
+    public void clickCoolButton() {
         click(COOL_BUTTON);
     }
 
-    public String getCoolCount(){
+    public String getCoolCount() {
         return driver.findElement(COOL_COUNT).getText();
     }
-
-    public void addDiscForFoto(){}
 }
