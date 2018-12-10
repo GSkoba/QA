@@ -22,7 +22,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseUploudForoToAlbum() throws Exception{
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot("", ""));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
@@ -31,7 +31,7 @@ public class FotoTest extends TestBase {
 
     @Test
     public void testCaseEditAlbum() throws Exception{
-        new LoginMainPage(driver).doLogin(new TestBot("89650671822", "Rlolq71j"));
+        new LoginMainPage(driver).doLogin(new TestBot("", ""));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
