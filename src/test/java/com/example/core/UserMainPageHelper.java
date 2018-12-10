@@ -14,4 +14,8 @@ public class UserMainPageHelper extends HelperBase{
     public void clickGroupsOnToolbar() {
         click(By.xpath(".//*[@class='nav-side __navigation' ]/*[contains(@href,'groups')]"));
     }
+
+    public void clickFotoOnToolBar(){
+        click(By.xpath(".//*[contains(@data-l,'t,userPhotos')]"));
+    }
 }

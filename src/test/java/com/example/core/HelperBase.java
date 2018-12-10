@@ -2,6 +2,8 @@ package com.example.core;
 
 import org.openqa.selenium.*;
 
+import java.util.concurrent.TimeUnit;
+
 public abstract class HelperBase {
     protected WebDriver driver;
     private boolean acceptNextAlert = true;
@@ -16,6 +18,15 @@ public abstract class HelperBase {
     protected void type(String groupName, By locator) {
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(groupName);
+    }
+
+    protected void typeKeys(Keys keys, By by) {
+        driver.findElement(by).sendKeys(keys);
+    }
+
+    protected void typeText(String text, By by){
+        driver.findElement(by).clear();
+        driver.findElement(by).sendKeys(text);
     }
 
     protected void click(By locator) {
@@ -54,4 +65,9 @@ public abstract class HelperBase {
             acceptNextAlert = true;
         }
     }
+
+    public void implicitWaitInSeconds(int seconds) {
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+    }
+
 }
