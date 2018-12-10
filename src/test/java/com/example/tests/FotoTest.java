@@ -36,7 +36,7 @@ public class FotoTest extends TestBase {
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.chooseAlbum("Grisha");
         fotoMainPage.clickEditButton();
-//        fotoMainPage.changeAlbumName("Grisha2");
+        fotoMainPage.changeAlbumName("Grisha2");
         fotoMainPage.saveChange();
     }
 
