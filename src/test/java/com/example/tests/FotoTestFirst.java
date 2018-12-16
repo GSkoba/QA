@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class FotoTestFirst extends TestBase {
-
+    //todo пейджы для фото и альбомов
     @Test
     public void testCaseCreateAlbum() throws Exception {
         new LoginMainPage(driver).doLogin(new TestBot(new String(Bot.login), new String(Bot.password)));

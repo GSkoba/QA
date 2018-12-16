@@ -11,15 +11,15 @@ import org.junit.Test;
 
 public class FotoTestSecond extends TestBase {
 
+    private final static String albumName = "Grisha";
+
     @Test
     public void testCaseCreateAlbum() throws Exception {
         new LoginMainPage(driver).doLogin(new TestBot(new String(Bot.login), new String(Bot.password)));
         new UserMainPageHelper(driver).clickFotoOnToolBar();
         FotoMainPage fotoMainPage = new FotoMainPage(driver);
         fotoMainPage.clickCreateAlbum();
-        String albumName = "Grisha";
         fotoMainPage.inputDiscForAlbum(albumName);
-        fotoMainPage.implicitWaitInSeconds(8);
         fotoMainPage.clickSaveAlbumButton();
         Assert.assertEquals(albumName,fotoMainPage.getAlbumName());
     }
